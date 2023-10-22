@@ -66,12 +66,29 @@
         "type": "github"
       }
     },
+    "omnisharp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697407911,
+        "narHash": "sha256-z3Dgrm9pNWkvfShPmB9O8TqpY592sk1W722zduOSing=",
+        "owner": "OmniSharp",
+        "repo": "omnisharp-vim",
+        "rev": "f9c5d3e3375e8b5688a4506e813cb21bdc7329b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "OmniSharp",
+        "repo": "omnisharp-vim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "lsp-progress": "lsp-progress",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "omnisharp": "omnisharp"
       }
     },
     "systems": {

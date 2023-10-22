@@ -15,9 +15,15 @@
       repo = "lsp-progress.nvim";
       flake = false;
     };
+    omnisharp = {
+      type = "github";
+      owner = "OmniSharp";
+      repo = "omnisharp-vim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, lsp-progress, ... }:
+  outputs = { self, nixpkgs, flake-utils, lsp-progress, omnisharp, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
@@ -29,10 +35,23 @@
           meta.homepage = "https://github.com/linrongbin16/lsp-progress.nvim/";
         };
 
-      in { packages = { inherit lsp-progress-nvim; }; }) // {
+        omnisharp-vim = pkgs.vimUtils.buildVimPlugin {
+          pname = "omnisharp-vim";
+          version = "2023-10-16";
+          src = omnisharp;
+          meta.homepage = "https://github.com/OmniSharp/roslyn.nvim/";
+        };
+
+      in {
+        packages = {
+          inherit lsp-progress-nvim;
+          inherit omnisharp-vim;
+        };
+      }) // {
         overlays.default = final: prev: {
           vimPlugins = prev.vimPlugins.extend (final': prev': {
-            inherit (self.packages.${prev.system}) lsp-progress-nvim;
+            inherit (self.packages.${prev.system})
+              lsp-progress-nvim omnisharp-vim;
           });
         };
       };
