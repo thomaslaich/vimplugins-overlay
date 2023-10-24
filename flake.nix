@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, lsp-progress, omnisharp, ... }:
+  outputs = { self, nixpkgs, flake-utils, lsp-progress, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
