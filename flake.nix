@@ -15,9 +15,15 @@
       repo = "lsp-progress.nvim";
       flake = false;
     };
+    startup = {
+      type = "github";
+      owner = "startup-nvim";
+      repo = "startup.nvim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, lsp-progress, ... }:
+  outputs = { self, nixpkgs, flake-utils, lsp-progress, startup, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
@@ -29,10 +35,23 @@
           meta.homepage = "https://github.com/linrongbin16/lsp-progress.nvim/";
         };
 
-      in { packages = { inherit lsp-progress-nvim; }; }) // {
+        startup-nvim = pkgs.vimUtils.buildVimPlugin {
+          pname = "startup";
+          version = "2021-10-23";
+          src = startup;
+          meta.homepage = "https://github.com/startup-nvim/startup.nvim";
+        };
+
+      in {
+        packages = {
+          inherit lsp-progress-nvim;
+          inherit startup-nvim;
+        };
+      }) // {
         overlays.default = final: prev: {
           vimPlugins = prev.vimPlugins.extend (final': prev': {
-            inherit (self.packages.${prev.system}) lsp-progress-nvim;
+            inherit (self.packages.${prev.system})
+              lsp-progress-nvim startup-nvim;
           });
         };
       };
