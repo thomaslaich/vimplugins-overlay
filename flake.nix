@@ -30,20 +30,21 @@
 
         lsp-progress-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "lsp-progress";
-          version = "2023-10-13";
+          version = "2023-11-14";
           src = lsp-progress;
           meta.homepage = "https://github.com/linrongbin16/lsp-progress.nvim/";
         };
 
         startup-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "startup";
-          version = "2021-10-23";
+          version = "2023-11-02";
           src = startup;
           meta.homepage = "https://github.com/startup-nvim/startup.nvim";
         };
 
       in {
         packages = {
+          default = lsp-progress-nvim;
           inherit lsp-progress-nvim;
           inherit startup-nvim;
         };

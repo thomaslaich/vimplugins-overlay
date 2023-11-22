@@ -37,11 +37,11 @@
     "lsp-progress": {
       "flake": false,
       "locked": {
-        "lastModified": 1697163868,
-        "narHash": "sha256-+bp8t+CPFQD6iUENc7ktHxIkMpJdQabA9Ouzk5GV2IM=",
+        "lastModified": 1699927010,
+        "narHash": "sha256-QB/Rkwjy0fluZbySZzWyDJNabU5/6Llho6mi5jFXQXk=",
         "owner": "linrongbin16",
         "repo": "lsp-progress.nvim",
-        "rev": "df7a3d0d865d584552ab571295e73868e736e60f",
+        "rev": "670cd71586f3464f2e341627ea434498fa0de7d2",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1697723726,
-        "narHash": "sha256-SaTWPkI8a5xSHX/rrKzUe+/uVNy6zCGMXgoeMb7T9rg=",
+        "lastModified": 1700390070,
+        "narHash": "sha256-de9KYi8rSJpqvBfNwscWdalIJXPo8NjdIZcEJum1mH0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7c9cc5a6e5d38010801741ac830a3f8fd667a7a0",
+        "rev": "e4ad989506ec7d71f7302cc3067abd82730a4beb",
         "type": "github"
       },
       "original": {
@@ -66,29 +66,29 @@
         "type": "github"
       }
     },
-    "omnisharp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697407911,
-        "narHash": "sha256-z3Dgrm9pNWkvfShPmB9O8TqpY592sk1W722zduOSing=",
-        "owner": "OmniSharp",
-        "repo": "omnisharp-vim",
-        "rev": "f9c5d3e3375e8b5688a4506e813cb21bdc7329b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "OmniSharp",
-        "repo": "omnisharp-vim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "lsp-progress": "lsp-progress",
         "nixpkgs": "nixpkgs",
-        "omnisharp": "omnisharp"
+        "startup": "startup"
+      }
+    },
+    "startup": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698906270,
+        "narHash": "sha256-H0dhUII76WErVED94ozSrB78R8/mRaZFHAWTJSiiECY=",
+        "owner": "startup-nvim",
+        "repo": "startup.nvim",
+        "rev": "088de9f5af8a10dfc39f8e397e3e9646940c7323",
+        "type": "github"
+      },
+      "original": {
+        "owner": "startup-nvim",
+        "repo": "startup.nvim",
+        "type": "github"
       }
     },
     "systems": {
