@@ -1,6 +1,5 @@
 {
-  description =
-    "A flake that provides overlays for vim plugins in order to use plugins unavailable in nixpkgs";
+  description = "A flake that provides overlays for vim plugins in order to use plugins unavailable in nixpkgs";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -21,10 +20,26 @@
       repo = "startup.nvim";
       flake = false;
     };
+    org-bullets = {
+      type = "github";
+      owner = "nvim-orgmode";
+      repo = "org-bullets.nvim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, lsp-progress, startup, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      lsp-progress,
+      startup,
+      org-bullets,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
 
@@ -42,19 +57,27 @@
           meta.homepage = "https://github.com/startup-nvim/startup.nvim";
         };
 
-      in {
+        org-bullets-nvim = pkgs.vimUtils.buildVimPlugin {
+          pname = "org-bullets";
+          version = "2023-11-02";
+          src = org-bullets;
+          meta.homepage = "https://github.com/nvim-orgmode/org-bullets.nvim";
+        };
+      in
+      {
         packages = {
           default = lsp-progress-nvim;
           inherit lsp-progress-nvim;
           inherit startup-nvim;
+          inherit org-bullets-nvim;
         };
-      }) // {
-        overlays.default = final: prev: {
-          vimPlugins = prev.vimPlugins.extend (final': prev': {
-            inherit (self.packages.${prev.system})
-              lsp-progress-nvim startup-nvim;
-          });
-        };
+      }
+    )
+    // {
+      overlays.default = final: prev: {
+        vimPlugins = prev.vimPlugins.extend (
+          final': prev': { inherit (self.packages.${prev.system}) lsp-progress-nvim startup-nvim; }
+        );
       };
+    };
 }
-
