@@ -45,21 +45,21 @@
 
         lsp-progress-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "lsp-progress";
-          version = "2023-11-14";
+          version = "2024-05-20";
           src = lsp-progress;
           meta.homepage = "https://github.com/linrongbin16/lsp-progress.nvim/";
         };
 
         startup-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "startup";
-          version = "2023-11-02";
+          version = "2023-12-20";
           src = startup;
           meta.homepage = "https://github.com/startup-nvim/startup.nvim";
         };
 
         org-bullets-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "org-bullets";
-          version = "2023-11-02";
+          version = "2024-02-21";
           src = org-bullets;
           meta.homepage = "https://github.com/nvim-orgmode/org-bullets.nvim";
         };
@@ -76,7 +76,9 @@
     // {
       overlays.default = final: prev: {
         vimPlugins = prev.vimPlugins.extend (
-          final': prev': { inherit (self.packages.${prev.system}) lsp-progress-nvim startup-nvim; }
+          final': prev': {
+            inherit (self.packages.${prev.system}) lsp-progress-nvim startup-nvim org-bullets-nvim;
+          }
         );
       };
     };
