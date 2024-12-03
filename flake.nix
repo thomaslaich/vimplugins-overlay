@@ -62,7 +62,10 @@
       overlays.default = final: prev: {
         vimPlugins = prev.vimPlugins.extend (
           final': prev': {
-            inherit (self.packages.${prev.system}) lsp-progress-nvim startup-nvim org-bullets-nvim;
+            inherit (self.packages.${prev.system})
+              kubectl-nvim
+              org-bullets-nvim
+              ;
           }
         );
       };
