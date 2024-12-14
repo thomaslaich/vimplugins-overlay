@@ -45,7 +45,7 @@
 
         kubectl-nvim = pkgs.vimUtils.buildVimPlugin {
           pname = "kubectl-nvim";
-          version = "2024-12-01";
+          version = "2024-12-13";
           src = kubectl;
           meta.homepage = "https://github.com/Ramilito/kubectl.nvim";
         };
